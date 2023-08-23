@@ -15,9 +15,9 @@ const Home = defineAsyncComponent(() => {
 
 <template>
   <Suspense>
-    <!-- <template #default>   -->
+    <template #default>  
       <Home/>
-    <!-- </template> -->
+    </template>
     <template #fallback>
       <Init/>
     </template>
