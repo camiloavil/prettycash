@@ -26,7 +26,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 14px 0;
+  padding: 10px 0;
   box-sizing: border-box;
 }
 .header {
@@ -45,8 +45,8 @@
   background-color: rgb(94, 83, 70);
   box-shadow: 0 -8px 16px #e5e5e5;
   /* border-radius: 24px; */
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 }
 
 .movements .head {
@@ -63,7 +63,7 @@
   width: 100%;
 }
 
-.movements .head .grip {
+.movements .grip {
   width: 120px;
   height: 8px;
   background-color: #e5e5e5;
