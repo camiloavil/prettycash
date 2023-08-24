@@ -3,6 +3,7 @@ import Layout from './Layout.vue';
 import Header from './Header.vue';
 import Resume from './Resume/Index.vue';
 import Movements from './Movement/Index.vue';
+import Action from './Action.vue';
 import { ref } from 'vue';
 
 const label = ref(null);
@@ -21,12 +22,12 @@ const movements = ref([{
                 id: 2,
                 title: "Movimiento 3",
                 description: "Lorem ipsum dolor sit amet",
-                amount: 1000,
+                amount: -1000,
             }, {
                 id: 3,
                 title: "Movimiento 4",
                 description: "Lorem ipsum dolor sit amet",
-                amount: 1000,
+                amount: -1000,
             }, {
                 id: 4,
                 title: "Movimiento 5",
@@ -41,14 +42,16 @@ const movements = ref([{
                 id: 7,
                 title: "Movimiento 8",
                 description: "Lorem ipsum dolor sit amet",
-                amount: 1000,
+                amount: -1000,
             }, {
                 id: 8,
                 title: "Movimiento 9",
                 description: "Lorem ipsum dolor sit amet",
                 amount: 1000,
             }]);
-
+const remove = () => {
+    console.log(`borrar ${id.value}`);
+}
 </script>
 
 <template>
@@ -62,12 +65,12 @@ const movements = ref([{
               graphic
           </template>
           <template #action>
-              action
+              <Action/>
           </template>
         </Resume>
       </template>
       <template #movements>
-        <Movements :movements="movements"/>
+        <Movements @remove="remove" :movements="movements"/>
       </template>
   </Layout>
 </template>

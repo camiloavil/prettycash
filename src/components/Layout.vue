@@ -2,6 +2,7 @@
     import { ref } from "vue";
     const showMovements = ref(false);
 </script>
+
 <template> 
     <div class="header">
         <slot name="header"></slot>

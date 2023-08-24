@@ -2,17 +2,19 @@
     <div class="movements">
         <h2 class="title">Historial</h2>
         <div class="content">
-            <Movement
-                v-for="movement in movements"
-                :key="movement.id"
-                :title="movement.title"
+            <Movement v-for="{id, title, description, amount} in movements" 
+              :key="id" 
+              :id="id"
+              :title="title"
+              :description="description"
+              :amount="amount" 
             />
         </div>
     </div>
 </template>
 
 <script setup>
-import { toRefs, defineProps } from 'vue';
+import { toRefs } from 'vue';
 import Movement from "./Movement.vue";
 
 const props = defineProps({
@@ -21,8 +23,8 @@ const props = defineProps({
         default: () => [],
     },
 });
-
 const { movements } = toRefs(props);
+
 </script>
 
 <style scoped>
