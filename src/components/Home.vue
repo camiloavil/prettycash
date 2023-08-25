@@ -2,6 +2,7 @@
 import Layout from './Layout.vue';
 import Header from './Header.vue';
 import Resume from './Resume/Index.vue';
+import Graphic from './Resume/Graphic.vue';
 import Movements from './Movement/Index.vue';
 import Action from './Action.vue';
 import { ref } from 'vue';
@@ -49,6 +50,8 @@ const movements = ref([{
                 description: "Lorem ipsum dolor sit amet",
                 amount: 1000,
             }]);
+
+const amounts = ref([100, 200, 500, 200, -400, -100, -600, 0, 300, 800]);
 const remove = () => {
     console.log(`borrar ${id.value}`);
 }
@@ -62,7 +65,7 @@ const remove = () => {
       <template #resume>
         <Resume :totalLabel="'Ahorro Total'" :label="label" :totalAmount="100000" :amount="amount">
           <template #graphic>
-              graphic
+            <Graphic :amounts="amounts"/>
           </template>
           <template #action>
               <Action/>
