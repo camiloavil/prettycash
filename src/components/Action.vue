@@ -1,16 +1,57 @@
 <script setup>
+import Modal from "./Modal.vue";
+import { ref } from "vue";
+const showModal = ref(false);
+const title = ref("");
+const amount = ref(0);
+const description = ref("");
+const movementType = ref("Ingreso");
 
+const submit = () => {
+    showModal.value = !showModal.value;
+}
 </script>
 
 <template>  
-    <div>Action</div>
+    <button @click="showModal=true" >Agregar movimiento</button>
+    <Teleport to="#app">
+        <Modal v-show="showModal" @close="showModal=false"> 
+            <form @submit.prevent="submit">
+                <div class="field">
+                    <label>Título</label>
+                    <input type="text" v-model="title" />
+                </div>
+                <div class="field">
+                    <label>Monto</label>
+                    <input type="number" v-model="amount" />
+                </div>
+                <div class="field">
+                    <label>Descripción</label>
+                    <textarea rows="4" v-model="description"></textarea>
+                </div>
+                <div class="field">
+                    <label class="radio-label">
+                        <input type="radio" v-model="movementType" value="Ingreso" />
+                        <span>Ingreso</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" v-model="movementType" value="Gasto" />
+                        <span>Gasto</span>
+                    </label>
+                </div>
+                <div class="action">
+                    <button>Agregar movimiento</button>
+                </div>
+            </form>
+        </Modal>
+    </Teleport>
 </template>
 
 <style scoped>
 button {
   color: white;
   font-size: 1.25rem;
-  background-color: var(--brand-blue);
+  background-color: rgb(46, 46, 136);
   border: none;
   width: 100%;
   padding: 24px 60px;
@@ -65,12 +106,12 @@ input[type="radio"] {
   appearance: none;
   width: 1.24rem;
   height: 1.24rem;
-  color: var(--brand-blue);
-  border: 2px solid var(--brand-blue);
+  color: rgb(112, 112, 192);
+  border: 2px solid rgb(112, 112, 192);
   border-radius: 50%;
 }
 
 input[type="radio"]:checked {
-  background-color: var(--brand-blue);
+  background-color: rgb(112, 112, 192);
 }
 </style>
