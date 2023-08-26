@@ -37,7 +37,6 @@ const isNegative = computed(
     () => amount.value < 0);
 
 const remove = () => {
-//   console.log(`borrar ${id.value}`);
   emit("remove", id.value);
 }
 

@@ -83,7 +83,7 @@ const movements = ref([
         },
         {
           id: 10,
-          title: "Movimiento 10",
+          title: "Movimiento 11",
           description: "Lorem ipsum dolor sit amet",
           amount: 500,
           time: new Date("2023-06-15"),
@@ -120,9 +120,17 @@ const amounts = computed(() => {
     // console.log(data);
     return data;
 });
-const remove = () => {
-    console.log(`borrar ${id.value}`);
-}
+const create = (movement) => {
+    movements.value.push(movement);
+};
+const remove = (id) => {
+    movements.value = movements.value.filter(m => m.id !== id);
+    console.log(`borrar ${id}`);
+};
+const selectedDate = (amountSelected) => {
+    // console.log(amountSelected);
+    amount.value = amountSelected;
+};
 </script>
 
 <template>
@@ -133,10 +141,10 @@ const remove = () => {
       <template #resume>
         <Resume :totalLabel="'Ahorro Total'" :label="label" :totalAmount="100000" :amount="amount">
           <template #graphic>
-            <Graphic :amounts="amounts"/>
+            <Graphic :amounts="amounts" @select="selectedDate" />
           </template>
           <template #action>
-              <Action/>
+              <Action @create="create"/>
           </template>
         </Resume>
       </template>

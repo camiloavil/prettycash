@@ -1,3 +1,20 @@
+<script setup>
+import { toRefs, defineEmits } from 'vue';
+import Movement from "./Movement.vue";
+
+const props = defineProps({
+    movements: {
+        type: Array,
+        default: () => [],
+    },
+});
+const { movements } = toRefs(props);
+const emit = defineEmits(["remove"]);
+const remove = (id) => {
+  emit("remove", id);
+}
+</script>
+
 <template>
     <div class="movements">
         <h2 class="title">Historial</h2>
@@ -8,24 +25,12 @@
               :title="title"
               :description="description"
               :amount="amount" 
+              @remove="remove"
             />
         </div>
     </div>
 </template>
 
-<script setup>
-import { toRefs } from 'vue';
-import Movement from "./Movement.vue";
-
-const props = defineProps({
-    movements: {
-        type: Array,
-        default: () => [],
-    },
-});
-const { movements } = toRefs(props);
-
-</script>
 
 <style scoped>
 .movements {
