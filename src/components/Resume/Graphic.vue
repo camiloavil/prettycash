@@ -1,6 +1,6 @@
 <script setup>
-import { ref, computed, toRefs } from 'vue';
-
+import { ref, computed, toRefs, defineEmits } from 'vue';
+const emit = defineEmits(['select']);
 const props = defineProps({
     amounts : {
         type: Array,
@@ -19,6 +19,7 @@ const tap = ({ target, touches }) => {
     const elementX = target.getBoundingClientRect().x;
     const touchX = touches[0].clientX;
     pointer.value = ((touchX - elementX) * xLength.value) / elementWidth;
+    emit('select', pointer.value);
 }
 const untap = () => {
     showPointer.value = false;
@@ -40,10 +41,10 @@ const zero = computed(() => {
 const points = computed(() => {
     const total = amounts.value.length;
     return amounts.value.reduce((points, amount, i) => {
-        const x = (xLength.value/total) * (i +1);
+        const x = (xLength.value/total) * (i + 1);
         const y = amountToPixels(amount);
         return `${points} ${x},${y}`;
-    },"0,100");
+    },`0,${zero.value}`);
 })
 </script>
 
