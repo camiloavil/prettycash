@@ -43,7 +43,7 @@ const points = computed(() => {
         const x = (xLength.value/total) * (i + 1);
         const y = amountToPixels(amount);
         return `${points} ${x},${y}`;
-    },`0,${zero.value}`);
+    },`0,${amountToPixels(amounts.value.length ? amounts.value[0] : 0)}`);
 })
 
 watch(pointer, (value) => {
@@ -54,7 +54,7 @@ watch(pointer, (value) => {
 </script>
 
 <template>
-    <div>
+    <div v-show="amounts.length? true : false">
         <svg @touchstart="tap" @touchmove="tap" @touchend="untap" :viewBox="`0 0  ${xLength} ${yLength}`" >
             <line stroke="gray" stroke-width="2" x1="0" :y1="zero" x2="300" :y2="zero"/>
             <polyline fill="none" stroke="#0689B0" stroke-width="2" :points="points"/>

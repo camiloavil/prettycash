@@ -5,89 +5,26 @@ import Resume from './Resume/Index.vue';
 import Graphic from './Resume/Graphic.vue';
 import Movements from './Movement/Index.vue';
 import Action from './Action.vue';
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 const limitDays = ref(30);
 const label = ref(null);
 const amount = ref(null);
-const movements = ref([
-        {
-          id: 0,
-          title: "Movimiento 1",
-          description: "Lorem ipsum dolor sit amet",
-          amount: 100,
-          time: new Date("2023-08-01"),
-        },
-        {
-          id: 1,
-          title: "Movimiento 2",
-          description: "Lorem ipsum dolor sit amet",
-          amount: 200,
-          time: new Date("2023-08-02"),
-        },
-        {
-          id: 2,
-          title: "Movimiento 3",
-          description: "Lorem ipsum dolor sit amet",
-          amount: 500,
-          time: new Date("2023-08-02"),
-        },
-        {
-          id: 3,
-          title: "Movimiento 4",
-          description: "Lorem ipsum dolor sit amet",
-          amount: 200,
-          time: new Date("2023-08-02"),
-        },
-        {
-          id: 4,
-          title: "Movimiento 5",
-          description: "Lorem ipsum dolor sit amet",
-          amount: -400,
-          time: new Date("2023-08-07"),
-        },
-        {
-          id: 5,
-          title: "Movimiento 6",
-          description: "Lorem ipsum dolor sit amet",
-          amount: -600,
-          time: new Date("2023-08-07"),
-        },
-        {
-          id: 6,
-          title: "Movimiento 7",
-          description: "Lorem ipsum dolor sit amet",
-          amount: -300,
-          time: new Date("2023-08-09"),
-        },
-        {
-          id: 7,
-          title: "Movimiento 8",
-          description: "Lorem ipsum dolor sit amet",
-          amount: 100,
-          time: new Date("2023-08-10"),
-        },
-        {
-          id: 8,
-          title: "Movimiento 9",
-          description: "Lorem ipsum dolor sit amet",
-          amount: 300,
-          time: new Date("2023-08-15"),
-        },
-        {
-          id: 9,
-          title: "Movimiento 10",
-          description: "Lorem ipsum dolor sit amet",
-          amount: 500,
-          time: new Date("2023-08-15"),
-        },
-        {
-          id: 10,
-          title: "Movimiento 11",
-          description: "Lorem ipsum dolor sit amet",
-          amount: 500,
-          time: new Date("2023-06-15"),
-        }]);
+const movements = ref([]);
+
+onMounted(() => {
+  const storage = JSON.parse(localStorage.getItem("movements"));
+  if (storage === null) {
+    movements.value = [];
+    return;
+  }
+  movements.value = storage;
+  if (Array.isArray(movements.value)) {
+    movements.value = movements.value.map(m => {
+      return { ...m, time: new Date(m.time) };
+    });
+  }
+});
 
 const amounts = computed(() => {
     const lastMovements = movements.value.filter(m => {
@@ -112,7 +49,7 @@ const amounts = computed(() => {
 
     // console.log(lastDays);
     const data = lastMovements.map((m, i) => {
-        const acumulator = lastMovements.slice(0, i);
+        const acumulator = lastMovements.slice(0, (i + 1));
         return acumulator.reduce((suma, movement) => {
             return suma + movement.amount
         }, 0);
@@ -120,17 +57,27 @@ const amounts = computed(() => {
     // console.log(data);
     return data;
 });
+const totalAmount = computed(() => {
+  return movements.value.reduce((total, movement) => {
+    return total + movement.amount
+  },0);
+})
 const create = (movement) => {
     movements.value.push(movement);
+    save();
 };
 const remove = (id) => {
     movements.value = movements.value.filter(m => m.id !== id);
     console.log(`borrar ${id}`);
+    save();
 };
 const selectedDate = (amountSelected) => {
     // console.log(amountSelected);
     amount.value = amountSelected;
 };
+const save = () => {
+  localStorage.setItem("movements", JSON.stringify(movements.value));
+}
 </script>
 
 <template>
@@ -139,7 +86,7 @@ const selectedDate = (amountSelected) => {
           <Header></Header>
       </template>
       <template #resume>
-        <Resume :totalLabel="'Ahorro Total'" :label="label" :totalAmount="100000" :amount="amount">
+        <Resume :totalLabel="'Ahorro Total'" :label="label" :totalAmount="totalAmount" :amount="amount">
           <template #graphic>
             <Graphic :amounts="amounts" @select="selectedDate" />
           </template>
