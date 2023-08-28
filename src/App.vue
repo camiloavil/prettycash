@@ -1,12 +1,13 @@
 <script setup>
-import Init from './components/Init.vue'
+// import Init from './components/Init.vue'
+import Init from './components/CustomLoader.vue'
 import { ref, onMounted , watch, computed, defineAsyncComponent } from 'vue'
 
 const Home = defineAsyncComponent(() => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(import("./components/Home.vue"));
-    }, 1000);
+    }, 1500);
   });
 });
 

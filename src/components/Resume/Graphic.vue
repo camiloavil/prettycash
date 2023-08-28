@@ -19,6 +19,7 @@ const tap = ({ target, touches }) => {
     const elementX = target.getBoundingClientRect().x;
     const touchX = touches[0].clientX;
     pointer.value = ((touchX - elementX) * xLength.value) / elementWidth;
+    // console.log(pointer.value);
 }
 const untap = () => {
     showPointer.value = false;
@@ -49,6 +50,7 @@ const points = computed(() => {
 watch(pointer, (value) => {
     const index = Math.ceil((value / (xLength.value / amounts.value.length)));
     if (index < 0 || index > amounts.value.length) return;
+    // emit("select", amounts.value[index - 1]);
     emit("select", amounts.value[index - 1]);
 });
 </script>

@@ -21,7 +21,7 @@
 </template>
 
 <style scoped>
-.header,
+
 .resume,
 .movements {
   display: flex;
@@ -31,8 +31,8 @@
   box-sizing: border-box;
 }
 .header {
-  position: fixed;
-  width: 100vw;
+  /* position: fixed; */
+  width: 100%;
 }
 .resume {
   min-height: 100vh;
