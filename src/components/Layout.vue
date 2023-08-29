@@ -22,30 +22,28 @@
 
 <style scoped>
 
-.resume,
+.header{
+  display: flex;
+}
+
 .movements {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 10px 0;
+  padding: 8px 0;
   box-sizing: border-box;
-}
-.header {
-  /* position: fixed; */
-  width: 100%;
-}
-.resume {
-  min-height: 100vh;
-}
-.movements {
+
   z-index: 1;
-  position: absolute;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
   flex-direction: column;
   bottom: 0;
-  width: 100vw;
-  background-color: rgb(94, 83, 70);
-  box-shadow: 0 -8px 16px #e5e5e5;
-  /* border-radius: 24px; */
+  width: 100%; 
+  max-width: 480px;
+
+  background-color: var(--color-background-mute);
+  box-shadow: 0 -4px 19px 0 var(--color-shadow);
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 }
@@ -67,7 +65,7 @@
 .movements .grip {
   width: 120px;
   height: 8px;
-  background-color: #e5e5e5;
+  background-color: var(--color-shadow);
   border-radius: 4px;
 }
 </style>

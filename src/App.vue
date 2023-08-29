@@ -1,8 +1,10 @@
 <script setup>
 // import Init from './components/Init.vue'
 import Init from './components/CustomLoader.vue'
-import { ref, onMounted , watch, computed, defineAsyncComponent } from 'vue'
+import theme from './assets/scripts/theme.js';
+import { ref, defineAsyncComponent, onMounted } from 'vue'
 
+const dark_theme = ref(window.matchMedia('(prefers-color-scheme: dark)').matches)
 const Home = defineAsyncComponent(() => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -10,8 +12,13 @@ const Home = defineAsyncComponent(() => {
     }, 1500);
   });
 });
-
-
+onMounted(() => {
+    if (dark_theme.value) {
+        theme.setDarkTheme()
+    } else {
+        theme.setLightTheme()
+    }
+});
 </script>
 
 <template>

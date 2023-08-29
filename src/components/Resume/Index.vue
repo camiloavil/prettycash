@@ -57,7 +57,6 @@ main {
   flex-direction: column;
   width: 100%;
 }
-
 h1,
 p {
   margin: 0;
@@ -66,9 +65,8 @@ p {
 
 h1 {
   margin-top: 14px;
-  color: var(--brand-green);
+  font-size: 3rem;
 }
-
 .graphic {
   display: flex;
   justify-content: center;

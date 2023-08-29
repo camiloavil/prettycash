@@ -61,9 +61,9 @@ const remove = () => {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 16px;
-  background-color: #e97a12;
-  border-radius: 8px;
+  padding: 12px;
+  background-color: var(--color-background);
+  border-radius: 15px;
   box-sizing: border-box;
 }
 
@@ -89,7 +89,7 @@ h4 {
 }
 
 .movement .action img {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .red {

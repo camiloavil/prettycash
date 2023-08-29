@@ -13,7 +13,7 @@ const close = () => emit("close");
 <template>
     <div class="modal">
         <div class="head">
-            <p>Nuevo movimiento</p>
+            <p>New movement</p>
             <img @click="close" :src="getImageUrl(`close-icon.svg`)" alt="cerrar" />
         </div>
         <div class="body">
@@ -30,7 +30,7 @@ const close = () => emit("close");
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgb(238, 121, 121);
+  background-color: var(--color-background);
 }
 
 .head {
@@ -45,6 +45,6 @@ const close = () => emit("close");
 p {
   margin: 0;
   font-size: 1.5rem;
-  color: var(--brand-blue);
+  /* color: var(--brand-blue); */
 }
 </style>

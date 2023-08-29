@@ -23,6 +23,7 @@ const tap = ({ target, touches }) => {
 }
 const untap = () => {
     showPointer.value = false;
+    emit("select", null);
 }
 const amountToPixels = (amount) => {
     //Ajustar eje Y
@@ -62,7 +63,7 @@ watch(pointer, (value) => {
             <polyline fill="none" stroke="#0689B0" stroke-width="2" :points="points"/>
             <line v-show="showPointer" stroke="#04b500" stroke-width="2" :x1="pointer" y1="0" :x2="pointer" :y2="yLength"/>
         </svg>
-        <p>Ultimos 30 dias</p>
+        <p>Last 30 days</p>
     </div>
 </template>
 <style scoped>

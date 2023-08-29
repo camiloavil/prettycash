@@ -25,34 +25,34 @@ const submit = () => {
 </script>
 
 <template>  
-    <button @click="showModal=true" >Agregar movimiento</button>
+    <button @click="showModal=true" >Add movement</button>
     <Teleport to="#app">
         <Modal v-show="showModal" @close="showModal=false"> 
             <form @submit.prevent="submit">
                 <div class="field">
-                    <label>Título</label>
+                    <label>Title</label>
                     <input type="text" v-model="title" />
                 </div>
                 <div class="field">
-                    <label>Monto</label>
+                    <label>Amount</label>
                     <input type="number" v-model="amount" />
                 </div>
                 <div class="field">
-                    <label>Descripción</label>
+                    <label>Description</label>
                     <textarea rows="4" v-model="description"></textarea>
                 </div>
                 <div class="field">
                     <label class="radio-label">
                         <input type="radio" v-model="movementType" value="Ingreso" />
-                        <span>Ingreso</span>
+                        <span>Income</span>
                     </label>
                     <label class="radio-label">
                         <input type="radio" v-model="movementType" value="Gasto" />
-                        <span>Gasto</span>
+                        <span>Expense</span>
                     </label>
                 </div>
                 <div class="action">
-                    <button>Agregar movimiento</button>
+                    <button>Add movement</button>
                 </div>
             </form>
         </Modal>
@@ -61,14 +61,14 @@ const submit = () => {
 
 <style scoped>
 button {
-  color: white;
-  font-size: 1.25rem;
-  background-color: rgb(46, 46, 136);
+  color: var(--color-text);
+  font-size: 1.5rem;
+  background-color: var(--color-background-mute);
+  box-shadow: 0 1px 16px 0px var(--color-shadow);
   border: none;
   width: 100%;
-  padding: 24px 60px;
-  border-radius: 60px;
-  box-sizing: border-box;
+  padding: 10px 30px;
+  border-radius: 20px;
 }
 
 form {
@@ -90,19 +90,16 @@ form .action {
 label {
   margin-bottom: 8px;
 }
-
 input,
 textarea {
-  font-size: 1.24rem;
-  border: 2px solid var(--brand-blue);
+  font-size: 1.1rem;
+  border: 2px solid var(--color-border);
   border-radius: 8px;
   padding: 8px;
 }
-
 input[type="number"] {
   text-align: right;
 }
-
 .radio-label {
   display: flex;
   align-items: center;

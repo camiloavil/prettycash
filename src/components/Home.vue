@@ -5,7 +5,7 @@ import Resume from './Resume/Index.vue';
 import Graphic from './Resume/Graphic.vue';
 import Movements from './Movement/Index.vue';
 import Action from './Action.vue';
-import { ref, computed, onMounted } from 'vue';
+import { ref, toRefs, computed, onMounted } from 'vue';
 
 const limitDays = ref(30);
 const label = ref(null);
@@ -83,10 +83,10 @@ const save = () => {
 <template>
   <Layout>
       <template #header>
-          <Header></Header>
+          <Header/>
       </template>
       <template #resume>
-        <Resume :totalLabel="'Ahorro Total'" :label="label" :totalAmount="totalAmount" :amount="amount">
+        <Resume :totalLabel="'Total Savings'" :label="label" :totalAmount="totalAmount" :amount="amount">
           <template #graphic>
             <Graphic :amounts="amounts" @select="selectedDate" />
           </template>
@@ -102,4 +102,5 @@ const save = () => {
 </template>
 
 <style scoped>
+
 </style>
