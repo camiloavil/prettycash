@@ -1,6 +1,6 @@
 <script setup>
 import Layout from './Layout.vue';
-import Header from './Header.vue';
+import MyHeader from './Header.vue';
 import Resume from './Resume/Index.vue';
 import Graphic from './Resume/Graphic.vue';
 import Movements from './Movement/Index.vue';
@@ -83,7 +83,7 @@ const save = () => {
 <template>
   <Layout>
       <template #header>
-          <Header/>
+        <MyHeader/>
       </template>
       <template #resume>
         <Resume :totalLabel="'Total Savings'" :label="label" :totalAmount="totalAmount" :amount="amount">

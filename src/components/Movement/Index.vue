@@ -38,10 +38,8 @@ const remove = (id) => {
   padding: 0 8px;
   margin-bottom: 14px;
 }
-
 .title {
   margin: 8px 16px 24px 16px;
-  color: var(--brand-blue);
 }
 
 .content {

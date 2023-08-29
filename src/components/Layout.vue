@@ -11,21 +11,31 @@
         <slot name="resume"></slot>    
     </div>
     <div class="movements">
-        <div class="head" @click="showMovements = !showMovements">
-            <div class="grip"></div>
-        </div>
+      <div class="head" @click="showMovements = !showMovements">
+        <div class="grip"></div>
+      </div>
+      <Transition name="fade">
         <div class="body" v-show="showMovements">
-            <slot name="movements"></slot>
+          <slot name="movements"></slot>
         </div>
+      </Transition>
     </div>
 </template>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 
 .header{
   display: flex;
 }
-
 .movements {
   display: flex;
   justify-content: space-around;
